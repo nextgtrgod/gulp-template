@@ -12,6 +12,7 @@ var gulp			= require('gulp'),
 	stylus			= require('gulp-stylus'),
 	runSequence		= require('run-sequence'),
 	browserSync		= require('browser-sync');
+	connectPHP		= require('gulp-connect-php');
 
 
 
@@ -44,8 +45,17 @@ var path= {
 		images: 	sourcePath + '/images/**/*.*',
 		fonts: 		sourcePath + '/fonts/**/*.*'
 	}
-}; +
+};
 
+
+
+gulp.task('connect-sync', function() {
+  	connect.server({}, function (){
+    	browserSync({
+      		proxy: '127.0.0.1:8000'
+    	});
+	});
+});
 
 
 gulp.task('browser-sync', function() {
@@ -187,6 +197,7 @@ gulp.task('minify', function(){
 
 gulp.task('default', ['browser-sync'], function(){
 	runSequence(
+		['connect-sync'],
 		['templates'],
 		['styles'],
 		['scripts'],
@@ -200,4 +211,8 @@ gulp.task('default', ['browser-sync'], function(){
 	gulp.watch( path.watch.js, 		['scripts']);
 	gulp.watch( path.watch.images, 	['images']);
 	gulp.watch( path.watch.fonts, 	['fonts']);
+
+	gulp.watch('**/*.php').on('change', function () {
+    	browserSync.reload();
+	});
 });
