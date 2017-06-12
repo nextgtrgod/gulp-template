@@ -1,0 +1,73 @@
+.align
+	&--center
+		text-align center
+	&--right
+		text-align right
+	&--left
+		text-align left
+	&--justify
+		text-align justify
+
+
+.float
+	&--left
+		float left
+	&--right
+		float right
+	&--none
+		float none
+
+
+.clearfix
+	&:after
+	&:before
+		content ''
+		display table
+		clear both
+		visibility hidden
+
+
+
+.padding
+	padding:			$indent
+	&--half
+		padding:		($indent/2)
+	&--top
+		padding-top:	$indent
+	&--bottom
+		padding-bottom: $indent
+	&--left
+		padding-left:	$indent
+	&--right
+		padding-right:	$indent
+
+
+for i in 0 5 10 15 20 25 30 35 40 45 50 55 60 65 70 75 80 85 90 95 100
+	.padding--{i}
+		padding:		unit(i, px) !important
+	.padding--top-{i}
+		padding-top:	unit(i, px) !important
+	.padding--bottom-{i}
+		padding-bottom: unit(i, px) !important
+	.padding--left-{i}
+		padding-left:	unit(i, px) !important
+	.padding--right-{i}
+		padding-right:	unit(i, px) !important
+
+
+for i in 0 5 10 15 20 25 30 35 40 45 50 55 60 65 70 75 80 85 90 95 100
+	.margin--{i}
+		margin:			unit(i, px) !important
+	.margin--top-{i}
+		margin-top:		unit(i, px) !important
+	.margin--bottom-{i}
+		margin-bottom:	unit(i, px) !important
+	.margin--left-{i}
+		margin-left:	unit(i, px) !important
+	.margin--right-{i}
+		margin-right:	unit(i, px) !important
+
+
+
+.hidden
+	display: none !important

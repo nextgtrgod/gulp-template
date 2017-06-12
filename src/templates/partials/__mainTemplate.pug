@@ -1,0 +1,31 @@
+block vars
+
+doctype
+html(lang='ru')
+	head
+		meta(charset="utf-8")
+		meta(http-equiv="X-UA-Compatible", content="IE=edge")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+
+		title= pageTitle
+
+		//css
+		link(rel="stylesheet", href="styles/style.css")
+
+	body
+		header
+			include ./__header.pug
+
+
+		//- .main__content
+		block content
+
+
+		footer
+			include ./__footer.pug
+
+
+		//js
+		script(src="scripts/helpers.js")
+		script(src="scripts/externalLibs.js")
+		script(src="scripts/main.js")

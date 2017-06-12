@@ -1,0 +1,97 @@
+.center-block
+	width 			100%
+	max-width: 		unit( $center_block_max, px)
+	margin 			auto
+	padding-left 	$indent
+	padding-right 	$indent
+
+
+
+@media(min-width: 720px)
+	.center-block
+		max-width 720px
+
+
+@media(min-width: 960px)
+	.center-block
+		max-width 920px
+
+
+@media(min-width: 1200px)
+	.center-block
+		max-width 1160px
+
+
+@media(min-width: 1600px)
+	.center-block
+		max-width 1460px
+
+
+
+.grid
+	font-size 	0px
+	line-height 0px
+.col
+	display 		inline-block
+	width 			100%
+	vertical-align 	top
+	position 		relative
+	box-sizing 		border-box
+	font-family: 	$font.default.family
+	font-size: 		$font.default.size
+	line-height: 	$font.default.height
+
+
+
+$column_list = (1..($columns + 1))
+
+$count = 0
+
+for i in $column_list
+
+	if $count <= $columns
+
+		for current_column in $column_list
+
+			if current_column < $count // <
+
+				.grid > .col--{current_column}of{$count}
+					width: 			unit( (100/$count) * current_column, '%' )
+					display 		inline-block
+					vertical-align 	top
+					position 		relative
+					box-sizing 		border-box
+					font-family: 	$font.default.family
+					font-size: 		$font.default.size
+					line-height: 	$font.default.height
+
+		$count += 1
+
+
+
+if $adaptive_grid
+
+	for break_point in $break_points
+
+		$count = 0
+
+		for i in $column_list
+
+			if $count <= $columns
+
+				for current_column in $column_list
+
+					if current_column <= $count // <
+
+							.grid > .col--{break_point}-{current_column}of{$count}
+								@media(min-width unit(break_point, px))
+									width: 			unit( (100/$count) * current_column, '%' )
+									display 		inline-block
+									vertical-align 	top
+									position 		relative
+									box-sizing 		border-box
+									font-family: 	$font.default.family
+									font-size: 		$font.default.size
+									line-height: 	$font.default.height
+
+				$count += 1
